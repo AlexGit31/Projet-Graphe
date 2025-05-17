@@ -5,8 +5,8 @@ Ce projet en langage C implémente un algorithme de flot maximum sur un graphe o
 ## 📁 Structure du projet
 
 projet-graphe/
-├── main.c → Point d'entrée principal
-├── include/ → Fichiers d’en-tête (.h)
+├── main.c # Point d'entrée principal
+├── include/ # Fichiers d’en-tête (.h)
 │ ├── buildGraph.h
 │ ├── buildRG.h
 │ ├── liste-chainee.h
@@ -15,7 +15,7 @@ projet-graphe/
 │ ├── shortestPath.h
 │ ├── updateFlowInNet.h
 │ └── updateFlowInRG.h
-├── src/ → Fichiers sources (.c)
+├── src/ # Fichiers sources (.c)
 │ ├── buildGraph.c
 │ ├── buildRG.c
 │ ├── liste-chainee.c
@@ -24,9 +24,9 @@ projet-graphe/
 │ ├── shortestPath.c
 │ ├── updateFlowInNet.c
 │ └── updateFlowInRG.c
-├── fichiers/ → Fichiers d’exemple au format DIMACS
+├── fichiers/ # Fichiers d’exemple au format DIMACS
 │ └── exemple.dimacs
-└── README.md → Documentation du projet
+└── README.md # Documentation du projet
 
 ## ⚙️ Compilation
 
