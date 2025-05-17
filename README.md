@@ -1,69 +1,48 @@
-# Projet Graphe — Algorithme de Flot Maximum
+# Graph Project — Maximum Flow Algorithm
 
-Ce projet en langage C implémente un algorithme de flot maximum sur un graphe orienté en utilisant un **graphe d’écart (graphe résiduel)**. Le programme lit un fichier d’entrée au format **DIMACS**, construit le graphe correspondant, et calcule un flot maximal entre une source et un puits à l’aide d’un algorithme basé sur la recherche de chemins augmentants.
+This C project implements a **maximum flow algorithm** on a net using a **residual graph** structure.  
+The program reads an input file in **DIMACS format**, builds the corresponding graph, and computes the maximum flow between a source and a sink using a path-augmenting algorithm.
 
-## 📁 Structure du projet
-
-projet-graphe/
-├── main.c # Point d'entrée principal
-├── include/ # Fichiers d’en-tête (.h)
-│ ├── buildGraph.h
-│ ├── buildRG.h
-│ ├── liste-chainee.h
-│ ├── liste-successeurs.h
-│ ├── minCapa.h
-│ ├── shortestPath.h
-│ ├── updateFlowInNet.h
-│ └── updateFlowInRG.h
-├── src/ # Fichiers sources (.c)
-│ ├── buildGraph.c
-│ ├── buildRG.c
-│ ├── liste-chainee.c
-│ ├── liste-successeurs.c
-│ ├── minCapa.c
-│ ├── shortestPath.c
-│ ├── updateFlowInNet.c
-│ └── updateFlowInRG.c
-├── fichiers/ # Fichiers d’exemple au format DIMACS
-│ └── exemple.dimacs
-└── README.md # Documentation du projet
+📄 This README is available in French:
+👉 [🇫🇷 Version française](README.fr.md)
 
 ## ⚙️ Compilation
 
-Ce projet peut être compilé à l'aide de `gcc` :
+This project can be compiled using `gcc`:
 
 ```bash
-gcc main.c src/\*.c -Iinclude -o graphe -Wall -Wextra
+gcc main.c src/*.c -Iinclude -o graphe -Wall -Wextra
 ```
 
-## 📚 Utilisation
+Make sure the include paths and file organization are correct.
 
-L’exécutable graphe s’utilise de la façon suivante :
+## 📚 Usage
+
+The executable can be run as follows:
 
 ```bash
-./graphe [fichier dimacs] [source] [puits]
+./graphe [dimacs_file] [verbose]
 ```
 
-    •	<fichier.dimacs> : Fichier d’entrée contenant la définition du graphe au format DIMACS.
-    •	[affichage_etapes] (optionnel) :
-    •	"true" ou "1" pour activer l’affichage des étapes intermédiaires.
-    •	Sinon, l’algorithme s’exécute en mode silencieux.
+- `<dimacs_file>`: Input file containing the graph definition in DIMACS format.
+- `[verbose]` _(optional)_:
+  - `"true"` or `"1"`: Enables verbose mode (detailed step-by-step display).
+  - If omitted: the algorithm runs silently.
 
-## 📄 Format d’entrée
+## 📄 Input Format
 
-Le fichier DIMACS doit respecter le format standard suivant :
+The DIMACS file must follow this standard format:
 
-```text
-c commentaire
-p max N M         # N sommets, M arcs
-n <num> s|t       # s = source, t = puits
-a u v c           # arc de u vers v de capacité c
-a ...
+```
+c comment
+p max N M         # N nodes, M edges
+n <id> s|t        # Node marked as source (s) or sink (t)
+a u v c           # Edge from node u to v with capacity c
 ```
 
-## 📝 Exemples
+## 📝 Example
 
-```text
+```
 p max 4 5
 n 1 s
 n 4 t
@@ -74,10 +53,10 @@ a 3 2 15
 a 3 4 10
 ```
 
-## 🧪 Débogage et affichage
+## 🧪 Debug & Verbose Mode
 
-Utilisez le deuxième argument "true" pour :
+Use `"true"` as the second argument to:
 
-    • Visualiser les structures internes du graphe (listes de successeurs)
-    • Suivre les étapes de mise à jour des flots
-    • Aider au débogage ou à la compréhension pédagogique de l'algorithme
+- Display the internal structure of the graph (successor lists)
+- Show each step of the flow update process
+- Facilitate debugging or help understand the algorithm pedagogically
