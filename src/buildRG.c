@@ -1,5 +1,5 @@
-#include "buildRG.h"
-#include "liste-successeurs.h"
+#include "../include/buildRG.h"
+#include "../include/liste-successeurs.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -33,9 +33,9 @@ struct liste_succ *buildRG(struct liste_succ *reseau) {
       if (Q->flow > 0) {
         // On affiche les infos de Q
         struct maillon *m2 = malloc(sizeof(struct maillon));
-        printf("i : %d\n", i);
-        printf("Q->sommet: %d, Q->capacite: %d, Q->flow: %d\n", Q->sommet,
-               Q->capacite, Q->flow);
+        // printf("i : %d\n", i);
+        // printf("Q->sommet: %d, Q->capacite: %d, Q->flow: %d\n", Q->sommet,
+        //        Q->capacite, Q->flow);
 
         m2->sommet = i;
         m2->flow = Q->flow;

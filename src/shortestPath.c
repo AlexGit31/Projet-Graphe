@@ -1,32 +1,32 @@
-#include "shortestPath.h"
-#include "liste-successeurs.h"
+#include "../include/shortestPath.h"
+#include "../include/liste-successeurs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #define NILL (struct maillon *)0
 #define NUL (struct liste_chainee *)0
-
+// ATTENTION : cette fonction doit aussi gérer le cas ou il n'y a pas de chemin
 struct liste_chainee *shortestPath(struct liste_succ *RG) {
-  printf("Debut OK.\n");
+  // printf("Debut OK.\n");
   struct liste_chainee *chemin = init_liste_chainee();
   // init_liste_chainee(chemin);
   if (!chemin) {
-    printf("ERREUR: malloc dans init_liste_chainee a échoué\n");
+    // printf("ERREUR: malloc dans init_liste_chainee a échoué\n");
     exit(EXIT_FAILURE);
   }
 
-  printf("liste chainee OK.\n");
+  // printf("liste chainee OK.\n");
   int niveau[RG->N];
   for (int i = 0; i < RG->N; i++) {
     niveau[i] = -1;
   }
 
-  printf("niveau OK.\n");
+  // printf("niveau OK.\n");
   int pere[RG->N];
   for (int i = 0; i < RG->N; i++) {
-    pere[i] = 0;
+    pere[i] = -1;
   }
 
-  printf("pere OK.\n");
+  // printf("pere OK.\n");
   niveau[RG->source] = 0;
   pere[RG->source] = RG->source;
 
@@ -35,10 +35,10 @@ struct liste_chainee *shortestPath(struct liste_succ *RG) {
 
   struct liste_chainee *file;
   file = init_liste_chainee();
-  printf("File OK.\n");
+  // printf("File OK.\n");
   enfiler(file, RG->source);
 
-  printf("Init OK.\n");
+  // printf("Init OK.\n");
 
   while (file->tete != NILL) {
     int sommet = defiler(file);
@@ -56,17 +56,21 @@ struct liste_chainee *shortestPath(struct liste_succ *RG) {
   // Note : il doit y avoir un problème avec les index des sommets, les tableaux
   // commencent à 0 alors que les graphes ont leur premier sommet à 1
 
-  printf("while OK.\n");
+  // printf("while OK.\n");
   // Construction du chemin :
 
   int sommet = RG->puits;
+  if (pere[sommet] == -1) {
+    // Dans ce cas, il n'y a pas de chemin et on retourne NULL
+    return NUL;
+  }
   while (sommet != RG->source) {
-    printf("sommet : %d\n", sommet);
+    // printf("sommet : %d\n", sommet);
     ajout_tete(chemin, sommet, 0, 0);
     sommet = pere[sommet];
   }
   ajout_tete(chemin, RG->source, 0, 0);
-  printf("fin shortestPath OK.\n");
+  // printf("fin shortestPath OK.\n");
   return chemin;
 }
 

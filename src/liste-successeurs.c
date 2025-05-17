@@ -1,5 +1,4 @@
-// Structure de liste de successeurs
-#include "liste-successeurs.h"
+#include "../include/liste-successeurs.h"
 #include <stdlib.h>
 #define NILL (struct maillon *)0
 
@@ -29,28 +28,3 @@ struct liste_succ *init_liste_succ(int N, int source, int puits) {
 
   return l;
 }
-
-// Ancien code :
-
-// void clear_liste_succ(struct liste_succ *l) {
-//   int i;
-//   for (i = 0; i < l->N; i++) {
-//     clear_liste_chainee(&l->tab[i]);
-//   }
-//   free(l->tab);
-//   free(l);
-// };
-//
-// struct liste_succ *init_liste_succ(int N) {
-//   struct liste_succ *l;
-//   l = (struct liste_succ *)malloc(sizeof(struct liste_succ));
-//   l->tab = (struct liste_chainee *)malloc(N * sizeof(struct liste_chainee));
-//
-//   l->N = N;
-//   int i;
-//   for (i = 0; i < N; i++) {
-//     l->tab[i].taille = 0;
-//     l->tab[i].tete = NULL;
-//   }
-//   return l;
-// }

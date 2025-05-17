@@ -1,4 +1,4 @@
-#include "liste-chainee.h"
+#include "../include/liste-chainee.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,19 +18,25 @@ void ajout_tete(struct liste_chainee *l, int sommet, int capacite, int flow) {
 }
 
 void clear_maillon(struct liste_chainee *l, struct maillon *M) {
-  struct maillon *P;
-  P = l->tete;
+  struct maillon *P = l->tete;
+
+  if (P == M) {
+    // Cas où le maillon à supprimer est la tête
+    l->tete = M->suivant;
+    free(M);
+    l->taille--;
+    return;
+  }
 
   while (P->suivant != M) {
     P = P->suivant;
   }
-  if (P && P->suivant == M) {
-    P->suivant = M->suivant;
-    l->taille--;
-    free(M);
-  }
 
-  free(M);
+  if (P->suivant == M) {
+    P->suivant = M->suivant;
+    free(M);
+    l->taille--;
+  }
 }
 
 void clear_liste_chainee(struct liste_chainee *l) {
@@ -64,6 +70,7 @@ void imprimer_liste_chainee(struct liste_chainee *l) {
   printf("NULL\n");
 }
 
+// ATTENTION : on va enveler cette action, on ne l'utilise pas
 void init_maillon(struct maillon *m, int sommet, int capacite, int flow) {
   m->capacite = capacite;
   m->flow = flow;
