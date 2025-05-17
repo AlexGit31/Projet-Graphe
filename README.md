@@ -1,4 +1,4 @@
-# Graph Project — Maximum Flow Algorithm
+# Graph Project — Maximum Flow Algorithm — DINIC
 
 This C project implements a **maximum flow algorithm** on a net using a **residual graph** structure.  
 The program reads an input file in **DIMACS format**, builds the corresponding graph, and computes the maximum flow between a source and a sink using a path-augmenting algorithm.

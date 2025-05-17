@@ -1,4 +1,4 @@
-# Projet Graphe — Algorithme de Flot Maximum
+# Projet Graphe — Algorithme de Flot Maximum — DINIC
 
 Ce projet en langage C implémente un algorithme de flot maximum dans un réseau
 en utilisant un **graphe d’écart (graphe résiduel)**.
