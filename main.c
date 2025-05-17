@@ -11,7 +11,7 @@
 #include <string.h>
 
 #define NUL (struct liste_chainee *)0
-
+#define NILL (struct maillon *)0
 void imprimer_reseau(struct liste_succ *reseau) {
   int i;
   for (i = 0; i < reseau->N; i++) {
@@ -89,8 +89,29 @@ int main(int argc, char *argv[]) {
   if (verbose) {
     printf("------------Réseau Final-----------\n");
     imprimer_reseau(reseau);
+    printf("Flow total : %d\n", flow);
   }
-  printf("Flow total : %d\n", flow);
+
+  // On commence maintenant l'écriture du fichier de sortie
+
+  FILE *fichier = fopen("exemple.txt", "w");
+  if (fichier == NULL) {
+    perror("Erreur lors de l'ouverture du fichier");
+    return 1;
+  }
+  fprintf(fichier, "Flow final dans le réseau : %d\n", flow);
+
+  struct maillon *temp;
+  for (int j = 0; j < reseau->N; j++) {
+    temp = reseau->tab[j]->tete;
+    while (temp != NILL) {
+      fprintf(fichier, "Arc : %d -> %d ; Flow : %d\n", j + 1, temp->sommet + 1,
+              temp->flow);
+      temp = temp->suivant;
+    }
+  }
+  fclose(fichier);
+  printf("Les informations ont été écrites dans infos.txt.\n");
 
   return 0;
 }
